@@ -2,6 +2,8 @@
 
 import React from 'react'
 import Link from 'next/link';
+import { LiaBalanceScaleSolid } from "react-icons/lia";
+
 
 
 
@@ -12,7 +14,11 @@ const Navbar = () => {
     <div className="container flex h-16 items-center justify-between ml-8">
       <div className="flex items-center gap-2">
         
-        <span className="text-xl font-bold text-[#0f3b6b]">Estudio Jurídico</span>
+      <span className="text-xl font-bold text-[#0f3b6b] flex items-center gap-1">
+          <LiaBalanceScaleSolid className="text-4xl" />
+          Estudio Jurídico
+      </span>
+
       </div>
       <nav className="hidden md:flex gap-6">
         <Link href="#inicio" className="text-sm font-medium hover:text-[#0f3b6b]">

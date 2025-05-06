@@ -5,7 +5,7 @@ import Form from './Form'
 const Contacto = () => {
   return (
 <div>
-   <section className="py-16 md:py-24 ml-8" >
+   <section id='consulta' className="py-16 md:py-24 ml-8" >
           <div className="container">
             <div className="bg-[#0f3b6b] text-white rounded-xl p-8 md:p-12">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">

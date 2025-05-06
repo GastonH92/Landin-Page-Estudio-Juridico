@@ -1,5 +1,10 @@
 import React from 'react'
 import Services from './Services'
+import { MdOutlineLocalPhone } from "react-icons/md";
+import { MdMailOutline } from "react-icons/md";
+import { FaRegClock } from "react-icons/fa";
+
+
 
 const Header = () => {
   return (
@@ -7,7 +12,7 @@ const Header = () => {
    <main className="flex-1">
         
         <section id="inicio" className="relative bg-[#0f3b6b] text-white">
-          <div className="container flex flex-col items-center justify-center py-20 md:py-32 text-center">
+          <div className="container flex flex-col items-center justify-center py-20 ml-12 py-32 text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Soluciones Legales Efectivas</h1>
             <p className="text-lg md:text-xl max-w-2xl mb-8">
               Nuestro equipo de abogados expertos está comprometido a brindar asesoramiento legal de calidad y
@@ -27,23 +32,29 @@ const Header = () => {
 
         {/* Info */}
         <section className="bg-white py-4 border-b">
-          <div className="container grid grid-cols-1 md:grid-cols-3 gap-4 ml-14">
+          <div className="container grid grid-cols-1 grid-cols-3 gap-4 ml-30">
             <div className="flex items-center gap-3">
-              {/* icon phone */}
+           
+            <MdOutlineLocalPhone />
+
               <div>
                 <p className="text-sm font-medium">Llámenos</p>
                 <p className="text-sm text-muted-foreground">+54 11 1234-5678</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
-             {/* icon mail */}
+            
+            <MdMailOutline />
+
               <div>
                 <p className="text-sm font-medium">Email</p>
                 <p className="text-sm text-muted-foreground">info@estudiojuridico.com</p>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              {/* icon clock */}
+             
+            <FaRegClock />
+
               <div>
                 <p className="text-sm font-medium">Horario de Atención</p>
                 <p className="text-sm text-muted-foreground">Lun - Vie: 9:00 - 18:00</p>
