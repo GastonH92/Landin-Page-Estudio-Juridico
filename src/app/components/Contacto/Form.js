@@ -7,11 +7,11 @@ import ContactForm from './ContactForm'
 const Form = () => {
   return (
     <section id="contacto" className="py-16 md:py-24 bg-gray-50">
-    <div className="container space-y-12">
+    <div className="container container mx-auto px-4">
       {/* Título y descripción */}
       <div className="text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#0f3b6b]">Contáctenos</h2>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-6">
           Estamos aquí para ayudarle. Complete el formulario a continuación y nos pondremos en contacto con usted a la brevedad.
         </p>
       </div>
@@ -50,14 +50,16 @@ const Form = () => {
           {/* Mapa de ubicación */}
           <div className="bg-white p-8 rounded-lg shadow-sm border">
             <h3 className="text-xl font-bold mb-4 text-[#0f3b6b]">Ubicación</h3>
-            <div className="aspect-video bg-gray-200 rounded-lg overflow-hidden">
-              <Image
-                src="/placeholder.svg?height=300&width=600"
-                alt="Mapa de ubicación"
-                width={600}
-                height={300}
-                className="w-full h-full object-cover"
-              />
+            <div className="flex-1 rounded-2xl overflow-hidden border border-slate-700 min-h-[300px] relative bg-slate-800">
+            <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.0168878895483!2d-58.38414532346177!3d-34.60373445749877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4aa9f0a6da5edb%3A0x11bead4e234e558b!2sObelisco!5e0!3m2!1sen!2sar!4v1715706381!5m2!1sen!2sar"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, position: "absolute", top: 0, left: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
             </div>
           </div>
     

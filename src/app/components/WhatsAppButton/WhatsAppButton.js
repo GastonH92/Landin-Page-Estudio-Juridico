@@ -11,7 +11,7 @@ const WhatsAppButton = () => {
     rel='noopener noreferrer'
     aria-label='WhatsApp'
     >
-      <FaWhatsapp className='text-2xl' />
+      <FaWhatsapp className='text-4xl' />
     </a>
 
   )

@@ -27,7 +27,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2">
+    <div className="backdrop-blur-sm p-8 rounded-2xl border ">
       <div className="bg-white p-8 rounded-lg shadow-sm border">
         <form ref={form} onSubmit={sendEmail} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -108,7 +108,7 @@ export default function ContactForm() {
 
           <button
             type="submit"
-            className="w-full bg-[#0f3b6b] hover:bg-[#0a2d52] text-white py-2 rounded"
+            className="px-6 py-2 bg-[#0f3b6b] text-white rounded-xl hover:bg-[#0a2d52] transition-colors duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#0f3b6b] focus:ring-offset-2"
           >
             Enviar Mensaje
           </button>
