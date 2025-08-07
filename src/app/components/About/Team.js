@@ -1,11 +1,53 @@
-import React from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
+'use client';
 
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15, // tiempo entre la aparición de cada card
+    },
+  },
+};
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut' },
+  },
+};
 
 const Team = () => {
+  const abogados = [
+    {
+      nombre: "Dr. Carlos Rodríguez",
+      rol: "Socio Fundador",
+      descripcion:
+        "Especialista en Derecho Corporativo con más de 25 años de experiencia asesorando a empresas nacionales e internacionales.",
+      imagen: "/placeholder.svg?height=400&width=400",
+    },
+    {
+      nombre: "Dra. Laura Martínez",
+      rol: "Socia",
+      descripcion:
+        "Especialista en Derecho Laboral y de la Seguridad Social, con amplia experiencia en negociaciones colectivas y conflictos laborales.",
+      imagen: "/placeholder.svg?height=400&width=400",
+    },
+    {
+      nombre: "Dr. Miguel Sánchez",
+      rol: "Asociado Senior",
+      descripcion:
+        "Especialista en Litigios y Derecho Procesal, con una destacada trayectoria en la representación de clientes ante tribunales.",
+      imagen: "/placeholder.svg?height=400&width=400",
+    },
+  ];
+
   return (
     <section id="equipo" className="py-16 md:py-24 bg-gray-50">
       <div className="container px-4 mx-auto">
@@ -17,32 +59,17 @@ const Team = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[
-            {
-              nombre: "Dr. Carlos Rodríguez",
-              rol: "Socio Fundador",
-              descripcion:
-                "Especialista en Derecho Corporativo con más de 25 años de experiencia asesorando a empresas nacionales e internacionales.",
-              imagen: "/placeholder.svg?height=400&width=400",
-            },
-            {
-              nombre: "Dra. Laura Martínez",
-              rol: "Socia",
-              descripcion:
-                "Especialista en Derecho Laboral y de la Seguridad Social, con amplia experiencia en negociaciones colectivas y conflictos laborales.",
-              imagen: "/placeholder.svg?height=400&width=400",
-            },
-            {
-              nombre: "Dr. Miguel Sánchez",
-              rol: "Asociado Senior",
-              descripcion:
-                "Especialista en Litigios y Derecho Procesal, con una destacada trayectoria en la representación de clientes ante tribunales.",
-              imagen: "/placeholder.svg?height=400&width=400",
-            },
-          ].map((abogado, idx) => (
-            <div
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          {abogados.map((abogado, idx) => (
+            <motion.div
               key={idx}
+              variants={cardVariants}
               className="bg-white rounded-lg overflow-hidden shadow-sm border hover:shadow-md transition-shadow"
             >
               <Image
@@ -63,12 +90,12 @@ const Team = () => {
                   Ver perfil
                 </Link>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
-}
+};
 
-export default Team
+export default Team;

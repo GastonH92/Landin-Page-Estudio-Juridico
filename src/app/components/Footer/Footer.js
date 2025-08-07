@@ -1,9 +1,47 @@
+'use client';
+
 import Link from 'next/link';
 import { Facebook, Linkedin, Instagram } from 'lucide-react';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState(null); // 'success' | 'error' | null
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!email) {
+      alert('Por favor ingrese un email válido.');
+      return;
+    }
+
+    emailjs
+      .send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        { user_email: email },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      )
+      .then(() => {
+        setStatus('success');
+        setEmail('');
+      })
+      .catch(() => {
+        setStatus('error');
+      });
+  };
+
   return (
-    <footer className="bg-[#0a2d52] text-white">
+    <motion.footer
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="bg-[#0a2d52] text-white"
+    >
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Marca y redes */}
@@ -14,17 +52,22 @@ const Footer = () => {
             <p className="text-sm text-gray-300 mb-4">
               Brindamos asesoramiento legal de calidad y soluciones personalizadas para nuestros clientes desde hace más de 20 años.
             </p>
-              <div className="flex gap-4">
-                <Link href="#" className="text-white hover:text-gray-300" aria-label="Facebook">
-                  <Facebook size={20} />
+            <div className="flex gap-4">
+              {[
+                { Icon: Facebook, label: 'Facebook', href: '#' },
+                { Icon: Linkedin, label: 'LinkedIn', href: '#' },
+                { Icon: Instagram, label: 'Instagram', href: '#' },
+              ].map(({ Icon, label, href }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className="text-white hover:text-gray-300 hover:scale-110 transition-transform duration-300"
+                >
+                  <Icon size={20} />
                 </Link>
-                <Link href="#" className="text-white hover:text-gray-300" aria-label="LinkedIn">
-                  <Linkedin size={20} />
-                </Link>
-                <Link href="#" className="text-white hover:text-gray-300" aria-label="Twitter">
-                  <Instagram size={20} />
-                </Link>
-              </div>
+              ))}
+            </div>
           </div>
 
           {/* Enlaces rápidos */}
@@ -75,34 +118,43 @@ const Footer = () => {
             <p className="text-sm text-gray-300 mb-4">
               Suscríbase a nuestro boletín para recibir noticias y actualizaciones legales.
             </p>
-            <form className="space-y-2">
+            <form className="space-y-2" onSubmit={handleSubmit}>
               <input
                 type="email"
                 placeholder="Su email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-3 py-2 text-black bg-white rounded-md"
+                required
               />
               <button
+                type="submit"
                 className="w-full px-6 py-2 bg-[#0f3b6b] text-white rounded-xl hover:bg-[#0a2d52] transition-colors duration-300 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#0f3b6b] focus:ring-offset-2"
               >
                 Suscribirse
               </button>
+
+              {status === 'success' && (
+                <p className="text-green-400 mt-2">¡Gracias por suscribirte!</p>
+              )}
+              {status === 'error' && (
+                <p className="text-red-500 mt-2">Error al enviar. Intente nuevamente.</p>
+              )}
             </form>
           </div>
         </div>
 
         {/* Línea inferior */}
         <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
-          <p>© {new Date().getFullYear()} TheBulldev Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} TheBullWeb Todos los derechos reservados.</p>
           <div className="flex justify-center gap-4 mt-2">
             <Link href="#" className="hover:text-white">Política de Privacidad</Link>
             <Link href="#" className="hover:text-white">Términos y Condiciones</Link>
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
-
-
 
 export default Footer;

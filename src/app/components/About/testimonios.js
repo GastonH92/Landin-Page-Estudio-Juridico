@@ -1,5 +1,7 @@
-import React from 'react'
+'use client';
 
+import React from 'react';
+import { motion } from 'framer-motion';
 
 export default function Testimonios() {
   const testimonios = [
@@ -23,6 +25,24 @@ export default function Testimonios() {
     },
   ];
 
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut' },
+    },
+  };
+
   return (
     <section id="testimonios" className="py-16 md:py-24 bg-[#0f3b6b] text-white">
       <div className="container px-4 mx-auto">
@@ -33,10 +53,17 @@ export default function Testimonios() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           {testimonios.map((testimonio, index) => (
-            <div
+            <motion.div
               key={index}
+              variants={cardVariants}
               className="bg-white/10 p-6 rounded-lg backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="flex items-center gap-1 text-yellow-400 mb-4">
@@ -59,9 +86,9 @@ export default function Testimonios() {
                 <p className="font-bold">{testimonio.nombre}</p>
                 <p className="text-sm opacity-80">{testimonio.cargo}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

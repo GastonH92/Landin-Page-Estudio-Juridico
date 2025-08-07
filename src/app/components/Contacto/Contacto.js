@@ -1,6 +1,17 @@
-import React from 'react'
-import Form from './Form'
+'use client';
 
+import React from 'react';
+import { motion } from 'framer-motion';
+import Form from './Form';
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: delay => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut', delay }
+  }),
+};
 
 const Contacto = () => {
   return (
@@ -8,8 +19,14 @@ const Contacto = () => {
       <div className="container mx-auto px-4">
         <div className="bg-[#0f3b6b] text-white rounded-xl p-8 md:p-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-            {/* Texto + CTA */}
-            <div>
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              custom={0}
+              variants={fadeInUp}
+            >
               <h2 className="text-3xl md:text-4xl font-bold mb-4">¿Necesita Asesoramiento Legal?</h2>
               <p className="text-lg mb-6 opacity-90">
                 Contáctenos hoy mismo para una consulta inicial gratuita. Nuestro equipo de expertos está listo para
@@ -21,10 +38,16 @@ const Contacto = () => {
               >
                 Solicitar consulta
               </a>
-            </div>
+            </motion.div>
 
-            {/* Información de contacto */}
-            <div className="bg-white/10 p-6 rounded-lg backdrop-blur-sm">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              custom={0.15}
+              variants={fadeInUp}
+              className="bg-white/10 p-6 rounded-lg backdrop-blur-sm"
+            >
               <h3 className="text-xl font-bold mb-4">Horario de Atención</h3>
               <div className="space-y-2">
                 <div className="flex justify-between">
@@ -44,11 +67,10 @@ const Contacto = () => {
                 <p className="font-medium">📞 Teléfono: +54 11 1234-5678</p>
                 <p className="font-medium">📧 Email: info@estudiojuridico.com</p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
 
-        {/* Formulario de contacto */}
         <div id="formulario" className="mt-12">
           <Form />
         </div>
@@ -58,4 +80,3 @@ const Contacto = () => {
 };
 
 export default Contacto;
-
