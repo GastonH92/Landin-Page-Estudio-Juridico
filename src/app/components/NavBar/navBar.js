@@ -64,7 +64,7 @@ export default function Navbar() {
       {/* Menú móvil desplegable */}
       {menuOpen && (
         <div className="md:hidden bg-white border-t px-4 py-4 space-y-4">
-          {["inicio", "servicios", "nosotros", "equipo", "testimonios", "contacto"].map((item) => (
+          {["inicio", "servicios", "nosotros", "equipo", "testimonios", "Calculadora", "contacto"].map((item) => (
             <Link
               key={item}
               href={`#${item}`}
