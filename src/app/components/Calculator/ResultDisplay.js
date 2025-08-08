@@ -16,7 +16,10 @@ export default function ResultDisplay({ resultado, onReset }) {
         <>
           <h2 className="text-2xl font-bold mb-5 text-blue-900">Resultados para Despido</h2>
           <ul className="space-y-2">
-            <li>Antigüedad: <span className="font-normal">{resultado.antiguedad} años</span></li>
+          <li>
+          Antigüedad: <span className="font-normal">{resultado.antiguedad?.replace?.('$', '')} años</span>
+          </li>
+
             <li>Indemnización: <span className="font-normal">${resultado.indemnizacion}</span></li>
             <li>Vacaciones no gozadas: <span className="font-normal">${resultado.vacaciones}</span></li>
             <li>Aguinaldo proporcional: <span className="font-normal">${resultado.aguinaldo}</span></li>

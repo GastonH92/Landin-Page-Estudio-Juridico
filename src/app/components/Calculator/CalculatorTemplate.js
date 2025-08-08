@@ -23,7 +23,7 @@ export default function CalculatorTemplate() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-6 py-8 bg-gray-50 rounded-lg shadow-lg">
+    <div id="Calculadora"   className="max-w-3xl mx-auto px-6 py-8 bg-gray-50 rounded-lg shadow-lg">
       <motion.h1
         ref={ref}
         initial="hidden"

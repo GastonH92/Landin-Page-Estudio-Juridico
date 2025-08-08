@@ -25,7 +25,7 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-6">
-          {["inicio", "servicios", "nosotros", "equipo", "testimonios", "contacto"].map((item) => (
+          {["inicio", "servicios", "nosotros", "equipo", "testimonios", "Calculadora", "contacto"].map((item) => (
             <motion.div
               key={item}
               whileHover={{ y: -2 }}
