@@ -1,9 +1,9 @@
-'use client';
-import React, { useRef } from 'react';
-import Services from './Services';
-import { MdOutlineLocalPhone, MdMailOutline } from 'react-icons/md';
-import { FaRegClock } from 'react-icons/fa';
-import { motion, useInView } from 'framer-motion';
+"use client";
+import React, { useRef } from "react";
+import Services from "./Services";
+import { MdOutlineLocalPhone, MdMailOutline } from "react-icons/md";
+import { FaRegClock } from "react-icons/fa";
+import { motion, useInView } from "framer-motion";
 
 // Componente reutilizable para fade-in al hacer scroll
 const FadeInOnScroll = ({ children, delay = 0 }) => {
@@ -15,10 +15,31 @@ const FadeInOnScroll = ({ children, delay = 0 }) => {
       ref={ref}
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, ease: 'easeOut', delay }}
+      transition={{ duration: 0.6, ease: "easeOut", delay }}
     >
       {children}
     </motion.div>
+  );
+};
+
+// Botón animado desde los costados
+const AnimatedButton = ({ children, delay = 0, side = "left", onClick }) => {
+  const variants = {
+    hidden: { opacity: 0, x: side === "left" ? -50 : 50 },
+    visible: { opacity: 1, x: 0 },
+  };
+
+  return (
+    <motion.button
+      initial="hidden"
+      animate="visible"
+      variants={variants}
+      transition={{ duration: 0.6, delay }}
+      onClick={onClick}
+      className="border border-white text-white px-6 py-2 rounded hover:bg-white/10 transition"
+    >
+      {children}
+    </motion.button>
   );
 };
 
@@ -34,16 +55,34 @@ const Header = () => {
                 Soluciones Legales Efectivas
               </h1>
               <p className="text-lg md:text-xl max-w-2xl mb-8">
-                Nuestro equipo de abogados expertos está comprometido a brindar asesoramiento legal de calidad y
-                soluciones personalizadas.
+                Nuestro equipo de abogados expertos está comprometido a brindar
+                asesoramiento legal de calidad y soluciones personalizadas.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="border border-white text-white px-6 py-2 rounded hover:bg-white/10 transition">
+                <AnimatedButton
+                  delay={0}
+                  side="left"
+                  onClick={() => {
+                    // Acá podés poner scroll a sección servicios, por ejemplo:
+                    document
+                      .getElementById("servicios")
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
                   Nuestros Servicios
-                </button>
-                <button className="border border-white text-white px-6 py-2 rounded hover:bg-white/10 transition">
+                </AnimatedButton>
+                <AnimatedButton
+                  delay={0.2}
+                  side="right"
+                  onClick={() => {
+                    window.open(
+                      "https://wa.me/5491168080250?text=Hola!%20Quiero%20consultar%20sobre%20sus%20servicios%20legales.",
+                      "_blank"
+                    );
+                  }}
+                >
                   Contactar Ahora
-                </button>
+                </AnimatedButton>
               </div>
             </div>
           </FadeInOnScroll>
@@ -68,7 +107,9 @@ const Header = () => {
                 <MdMailOutline className="text-2xl text-primary" />
                 <div>
                   <p className="text-sm font-medium">Email</p>
-                  <p className="text-sm text-muted-foreground">info@estudiojuridico.com</p>
+                  <p className="text-sm text-muted-foreground">
+                    info@estudiojuridico.com
+                  </p>
                 </div>
               </div>
             </FadeInOnScroll>
@@ -78,7 +119,9 @@ const Header = () => {
                 <FaRegClock className="text-2xl text-primary" />
                 <div>
                   <p className="text-sm font-medium">Horario de Atención</p>
-                  <p className="text-sm text-muted-foreground">Lun - Vie: 9:00 - 18:00</p>
+                  <p className="text-sm text-muted-foreground">
+                    Lun - Vie: 9:00 - 18:00
+                  </p>
                 </div>
               </div>
             </FadeInOnScroll>

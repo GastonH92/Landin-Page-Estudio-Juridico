@@ -4,6 +4,7 @@ import About from "./components/About/About";
 import Contacto from "./components/Contacto/Contacto";
 import WhatsAppButton from "./components/WhatsAppButton/WhatsAppButton";
 import ChatWidget from "./components/ChatWidget/ChatWidget";
+import CalculatorTemplate from "./components/Calculator/CalculatorTemplate";
 
 
 
@@ -13,6 +14,7 @@ export default function Home() {
     <>
       <Header />
       <About />
+      <CalculatorTemplate />
       <Contacto />
       <ChatWidget />
 
